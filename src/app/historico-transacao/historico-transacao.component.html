@@ -1,0 +1,38 @@
+<!-- src/app/historico-transacao/historico-transacao.component.html -->
+<div class="container mt-4">
+  <h3 class="text-center mb-3">Histórico de Transações</h3>
+
+  <table class="table table-bordered table-hover" *ngIf="transacoes.length > 0; else semTransacoes">
+    <thead class="table-light">
+      <tr>
+        <th>Produto</th>
+        <th>Código</th>
+        <th>Quantidade</th>
+        <th>Data</th>
+        <th>Tipo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transacao of transacoes">
+        <td>{{ transacao.produto.nome }}</td>
+        <td>{{ transacao.produto.codigoFabricante }}</td>
+        <td>{{ transacao.quantidade }}</td>
+        <td>{{ transacao.data | date: 'dd/MM/yyyy' }}</td>
+        <td>
+          <span [ngClass]="{
+            'text-success': transacao.tipo === 'entrada',
+            'text-danger': transacao.tipo === 'saida'
+          }">
+            {{ transacao.tipo | titlecase }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #semTransacoes>
+    <div class="alert alert-info text-center">
+      Nenhuma transação registrada até o momento.
+    </div>
+  </ng-template>
+</div>

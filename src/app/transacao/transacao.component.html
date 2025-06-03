@@ -1,0 +1,43 @@
+<!-- src/app/transacao/transacao.component.html -->
+<div class="container mt-5">
+  <div class="d-flex justify-content-start mb-3">
+    <button class="btn btn-outline-secondary" [routerLink]="['/']">←</button>
+  </div>
+
+  <h3 class="mb-4 text-center">Formulário de Registro de Transação</h3>
+
+  <form (ngSubmit)="salvar()" #form="ngForm">
+    <div class="mb-3">
+      <label for="produto" class="form-label">Produto:</label>
+      <select class="form-select" id="produto" [(ngModel)]="produtoSelecionado" name="produto" required>
+        <option *ngFor="let produto of produtos" [ngValue]="produto">
+          {{ produto.nome }} ({{ produto.codigoFabricante }})
+        </option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="quantidade" class="form-label">Quantidade:</label>
+      <input type="number" class="form-control" id="quantidade" [(ngModel)]="quantidade" name="quantidade" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="data" class="form-label">Data:</label>
+      <input type="date" class="form-control" id="data" [(ngModel)]="data" name="data" required>
+    </div>
+
+    <div class="mb-4">
+      <label for="tipoTransacao" class="form-label">Tipo de transação:</label>
+      <select class="form-select" id="tipoTransacao" [(ngModel)]="tipoTransacao" name="tipoTransacao" required>
+        <option value="" disabled selected>Selecione</option>
+        <option value="entrada">Entrada</option>
+        <option value="saida">Saída</option>
+      </select>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-secondary me-2" (click)="cancelar()">Cancelar</button>
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+  </form>
+</div>

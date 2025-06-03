@@ -1,153 +1,88 @@
-@use 'sass:color';
+/* Centraliza todos os títulos h1 a h6 */
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+  color: #333; /* cinza escuro para contraste */
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
 
-$cor-primaria: #007bff;
-$cor-secundaria: #6c757d;
-$cor-fundo: #f8f9fa;
-$cor-erro: #dc3545;
-$cor-sucesso: #28a745;
-$cor-texto: #495057;
-$cor-borda: #e0e0e0;
-
-* {
+/* Fundo geral branco suave */
+body {
+  background-color: #f8f9fa; /* cinza muito claro */
+  color: #444; /* texto cinza escuro */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
 }
 
-body {
-  background-color: $cor-fundo;
-  color: $cor-texto;
-  line-height: 1.6;
-  font-size: 1rem;
-}
-
+/* Container principal com fundo branco, borda leve e sombra suave */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-h2 {
-  color: $cor-primaria;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-form {
   background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dee2e6; /* borda cinza clara */
+  border-radius: 6px;
+  padding: 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
-.mb-3 {
-  margin-bottom: 15px;
+/* Inputs e selects com bordas cinza e foco azul suave */
+input.form-control,
+select.form-select,
+textarea.form-control {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
 }
 
-label {
-  font-size: 1rem;
-  font-weight: bold;
-  color: $cor-texto;
+input.form-control:focus,
+select.form-select:focus,
+textarea.form-control:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74,144,226,0.5);
+  outline: none;
 }
 
-input[type="text"],
-input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid $cor-borda;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s;
-
-  &:focus {
-    border-color: $cor-primaria;
-    outline: none;
-  }
+/* Botões */
+.btn-primary {
+  background-color: #4a90e2;
+  border-color: #4a90e2;
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &.btn-primary {
-    background-color: $cor-primaria;
-    color: #fff;
-    border: none;
-
-    &:hover {
-      background-color: color.adjust($cor-primaria, $lightness: -10%);
-    }
-  }
-
-  &.btn-secondary {
-    background-color: $cor-secundaria;
-    color: #fff;
-    border: none;
-
-    &:hover {
-      background-color: color.adjust($cor-primaria, $lightness: -10%);
-    }
-  }
+.btn-primary:hover {
+  background-color: #357ABD;
+  border-color: #357ABD;
 }
 
-.table {
-  width: 100%;
-  margin-top: 30px;
-  border-collapse: collapse;
-
-  th, td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid $cor-borda;
-  }
-
-  th {
-    background-color: #f1f1f1;
-    font-weight: bold;
-    color: $cor-texto;
-  }
-
-  td {
-    background-color: #fff;
-  }
-
-  tbody tr:hover {
-    background-color: #f7f7f7;
-  }
-
-  i {
-    font-size: 1.4rem;
-    cursor: pointer;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: color.adjust($cor-primaria, $lightness: -20%);
-    }
-  }
-
-  .text-danger {
-    color: $cor-erro;
-  }
-
-  .text-primary {
-    color: $cor-primaria;
-  }
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 15px;
-  }
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
 
-  form {
-    padding: 20px;
-  }
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
 
-  .table {
-    font-size: 0.9rem;
-  }
+.btn-danger:hover {
+  background-color: #bb2d3b;
+  border-color: #b02a37;
+}
+
+/* Navbar escura com links cinza claro */
+.navbar-dark {
+  background-color: #343a40;
+}
+
+.navbar-dark .nav-link {
+  color: #ced4da;
+}
+
+.navbar-dark .nav-link.active,
+.navbar-dark .nav-link:hover {
+  color: #fff;
+  font-weight: 600;
 }

@@ -1,54 +1,52 @@
 <div class="container mt-5">
+  <div class="d-flex justify-content-start mb-3">
+    <button class="btn btn-outline-secondary" [routerLink]="['/']">
+      ← 
+    </button>
+  </div>
+
   <h2>Cadastro de Produto</h2>
 
   <div class="mb-3">
-    <label class="form-label">Nome:</label>
-    <input type="text" class="form-control" [(ngModel)]="nome" name="nome">
+    <label class="form-label">Código do Fabricante:</label>
+    <input type="text" class="form-control" [(ngModel)]="produto.codigoFabricante" name="codigoFabricante" />
   </div>
 
   <div class="mb-3">
     <label class="form-label">Marca:</label>
-    <input type="text" class="form-control" [(ngModel)]="marca" name="marca">
+    <input type="text" class="form-control" [(ngModel)]="produto.marca" name="marca" />
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Quantidade:</label>
-    <input type="number" class="form-control" [(ngModel)]="quantidade" name="quantidade">
+    <label class="form-label">Localização:</label>
+    <input type="text" class="form-control" [(ngModel)]="produto.localizacao" name="localizacao" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Garantia (meses):</label>
+    <input type="number" class="form-control" [(ngModel)]="produto.garantiaMeses" name="garantiaMeses" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Nome:</label>
+    <input type="text" class="form-control" [(ngModel)]="produto.nome" name="nome" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Descrição:</label>
+    <textarea class="form-control" [(ngModel)]="produto.descricao" name="descricao" rows="3"></textarea>
   </div>
 
   <div class="mb-3">
     <label class="form-label">Valor Unitário:</label>
-    <input type="number" class="form-control" [(ngModel)]="valorUnitario" name="valorUnitario">
+    <input type="number" class="form-control" [(ngModel)]="produto.valorUnitario" name="valorUnitario" />
   </div>
 
-  <button class="btn btn-primary me-2" (click)="cadastrarProduto()">Cadastrar</button>
-  <button class="btn btn-secondary" (click)="limparCampos()">Limpar</button>
+  <div class="mb-3">
+    <label class="form-label">Quantidade:</label>
+    <input type="number" class="form-control" [(ngModel)]="produto.quantidade" name="quantidade" />
+  </div>
 
-  <h3 class="mt-4">Lista de Produtos</h3>
-  <table class="table table-striped mt-2" *ngIf="produtos.length > 0">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Marca</th>
-        <th>Quantidade</th>
-        <th>Valor Unitário</th>
-        <th>Valor Total</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let produto of produtos">
-        <td>{{ produto.nome }}</td>
-        <td>{{ produto.marca }}</td>
-        <td>{{ produto.quantidade }}</td>
-        <td>{{ produto.valorUnitario | currency:'BRL' }}</td>
-        <td>{{ produto.valorTotal | currency:'BRL' }}</td>
-        <td>
-          <i class="bi bi-trash-fill text-danger cursor-pointer" 
-            (click)="removerProduto(produto)"
-            title="Remover produto" style="font-size: 1.4rem;"></i>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <button class="btn btn-primary me-2" (click)="adicionarProduto()">Cadastrar</button>
+  <button class="btn btn-secondary" (click)="limparCampos()">Limpar</button>
 </div>

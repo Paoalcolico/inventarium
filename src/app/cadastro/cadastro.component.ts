@@ -1,46 +1,55 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ProdutoService, Produto } from '../services/produto-service';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-cadastro',
-  imports: [FormsModule, CommonModule],
+  selector: 'app-cadastro-produto',
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './cadastro.component.html'
 })
 export class CadastroProdutoComponent {
-  nome: string = '';
-  marca: string = '';
-  quantidade: number = 0;
-  valorUnitario: number = 0;
+  produto: Produto = {
+    codigoFabricante: '',
+    marca: '',
+    localizacao: '',
+    garantiaMeses: 0,
+    nome: '',
+    descricao: '',
+    valorUnitario: 0,
+    quantidade: 0
+  };
 
-  produtos: any[] = [];
+  constructor(private produtoService: ProdutoService) {}
 
-  cadastrarProduto() {
-    if (this.nome && this.marca && this.quantidade > 0 && this.valorUnitario > 0) {
-      const novoProduto = {
-        nome: this.nome,
-        marca: this.marca,
-        quantidade: this.quantidade,
-        valorUnitario: this.valorUnitario,
-        valorTotal: this.quantidade * this.valorUnitario
-      };
+  adicionarProduto() {
+    const camposValidos = 
+      this.produto.codigoFabricante.trim() !== '' &&
+      this.produto.nome.trim() !== '' &&
+      this.produto.quantidade > 0 &&
+      this.produto.valorUnitario > 0;
 
-      this.produtos.push(novoProduto);
-      this.limparCampos();
-    } else {
-      alert('Preencha todos os campos corretamente!');
+    if (!camposValidos) {
+      alert('Preencha todos os campos obrigatórios corretamente! Código do fabricante, nome, quantidade e valor unitário são obrigatórios.');
+      return;
     }
+
+    this.produtoService.adicionarProduto({ ...this.produto });
+    this.limparCampos();
   }
 
   limparCampos() {
-    this.nome = '';
-    this.marca = '';
-    this.quantidade = 0;
-    this.valorUnitario = 0;
-  }
-
-  // Função para remover um produto
-  removerProduto(produto: any) {
-    this.produtos = this.produtos.filter((p: any) => p !== produto);
+    this.produto = {
+      codigoFabricante: '',
+      marca: '',
+      localizacao: '',
+      garantiaMeses: 0,
+      nome: '',
+      descricao: '',
+      valorUnitario: 0,
+      quantidade: 0
+    };
   }
 }
