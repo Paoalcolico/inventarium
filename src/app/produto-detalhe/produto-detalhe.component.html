@@ -1,50 +1,44 @@
 <div class="container mt-5" *ngIf="produto">
+  <div class="formulario-produto mx-auto">
+    <h3 class="text-center mb-4">Informações Gerais do Produto</h3>
+    <form (ngSubmit)="salvar()">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label>Marca</label>
+          <input type="text" class="form-control" [readonly]="!modoEdicao" [(ngModel)]="produto.marca" name="marca" />
+        </div>
+        <div class="col-md-6">
+          <label>Nome</label>
+          <input type="text" class="form-control" [readonly]="!modoEdicao" [(ngModel)]="produto.nome" name="nome" />
+        </div>
+        <div class="col-md-6">
+          <label>Descrição</label>
+          <textarea class="form-control" [readonly]="!modoEdicao" [(ngModel)]="produto.descricao" name="descricao"></textarea>
+        </div>
+        <div class="col-md-6">
+          <label>Código do Fabricante</label>
+          <input type="text" class="form-control" [readonly]="!modoEdicao" [(ngModel)]="produto.codigoFabricante" name="codigoFabricante" />
+        </div>
+        <div class="col-md-6">
+          <label>Garantia (meses)</label>
+          <input type="number" class="form-control" [readonly]="!modoEdicao" [(ngModel)]="produto.garantiaMeses" name="garantiaMeses" />
+        </div>
+        <div class="col-md-6">
+          <label>Localização</label>
+          <input type="text" class="form-control" [readonly]="!modoEdicao" [(ngModel)]="produto.localizacao" name="localizacao" />
+        </div>
+      </div>
 
-    <div class="d-flex justify-content-start mb-3">
-    <button class="btn btn-outline-secondary" [routerLink]="['/']">
-      ← 
-    </button>
+      <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap">
+        <button type="button" class="btn custom-btn" (click)="voltar()">Voltar</button>
+
+        <div *ngIf="!modoEdicao">
+          <button type="button" class="btn custom-btn" (click)="editar()">Editar</button>
+        </div>
+        <div *ngIf="modoEdicao">
+          <button type="submit" class="btn custom-btn">Confirmar</button>
+        </div>
+      </div>
+    </form>
   </div>
-  <h3>Detalhes do Produto</h3>
-
-  <form (ngSubmit)="salvar()">
-    <div class="mb-3">
-      <label>Código do Fabricante</label>
-      <input type="text" class="form-control" [(ngModel)]="produto.codigoFabricante" name="codigoFabricante" required>
-    </div>
-    <div class="mb-3">
-      <label>Marca</label>
-      <input type="text" class="form-control" [(ngModel)]="produto.marca" name="marca" required>
-    </div>
-    <div class="mb-3">
-      <label>Localização</label>
-      <input type="text" class="form-control" [(ngModel)]="produto.localizacao" name="localizacao" required>
-    </div>
-    <div class="mb-3">
-      <label>Garantia (meses)</label>
-      <input type="number" class="form-control" [(ngModel)]="produto.garantiaMeses" name="garantiaMeses" required>
-    </div>
-    <div class="mb-3">
-      <label>Nome</label>
-      <input type="text" class="form-control" [(ngModel)]="produto.nome" name="nome" required>
-    </div>
-    <div class="mb-3">
-      <label>Descrição</label>
-      <textarea class="form-control" [(ngModel)]="produto.descricao" name="descricao" required></textarea>
-    </div>
-    <div class="mb-3">
-      <label>Quantidade</label>
-      <input type="number" class="form-control" [(ngModel)]="produto.quantidade" name="quantidade" required>
-    </div>
-    <div class="mb-3">
-      <label>Valor Unitário</label>
-      <input type="number" class="form-control" [(ngModel)]="produto.valorUnitario" name="valorUnitario" required>
-    </div>
-
-    <div class="d-flex justify-content-end">
-      <button type="button" class="btn btn-secondary me-2" (click)="cancelar()">Cancelar</button>
-      <button type="button" class="btn btn-danger me-2" (click)="excluir()">Excluir</button>
-      <button type="submit" class="btn btn-primary">Salvar</button>
-    </div>
-  </form>
 </div>

@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProdutoService, Produto } from '../services/produto-service';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-produto',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
-  templateUrl: './cadastro.component.html'
+  imports: [CommonModule, FormsModule],
+  templateUrl: './cadastro.component.html',
+  styleUrls: ['./cadastro.component.css']
 })
 export class CadastroProdutoComponent {
   produto: Produto = {
