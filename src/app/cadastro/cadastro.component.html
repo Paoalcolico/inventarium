@@ -1,6 +1,9 @@
+<!-- Container principal do formulário de cadastro de produto -->
 <div class="formulario-produto container mt-5">
+  <!-- Título do formulário, centralizado com margem inferior -->
   <h3 class="text-center mb-4">Cadastro de produto</h3>
 
+  <!-- Linha com campos Código do Fabricante e Marca -->
   <div class="row mb-3">
     <div class="col-md-6">
       <label class="form-label">Código do Fabricante:</label>
@@ -12,6 +15,7 @@
     </div>
   </div>
 
+  <!-- Linha com campos Localização e Garantia (meses) -->
   <div class="row mb-3">
     <div class="col-md-6">
       <label class="form-label">Localização:</label>
@@ -23,6 +27,7 @@
     </div>
   </div>
 
+  <!-- Linha com campos Nome e Valor Unitário -->
   <div class="row mb-3">
     <div class="col-md-6">
       <label class="form-label">Nome:</label>
@@ -34,6 +39,7 @@
     </div>
   </div>
 
+  <!-- Linha com campos Quantidade e Descrição (textarea) -->
   <div class="row mb-3">
     <div class="col-md-6">
       <label class="form-label">Quantidade:</label>
@@ -45,6 +51,7 @@
     </div>
   </div>
 
+  <!-- Botões de ação alinhados à direita: Cancelar e Salvar -->
   <div class="d-flex justify-content-end mt-4">
     <button class="btn custom-btn me-2" (click)="limparCampos()">Cancelar</button>
     <button class="btn custom-btn" (click)="adicionarProduto()">Salvar</button>

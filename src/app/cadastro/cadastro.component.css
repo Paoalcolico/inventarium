@@ -1,54 +1,68 @@
+/* Estilização do contêiner do formulário */
 .formulario-produto {
-  background-color: #f2f2f2;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
-  max-width: 900px;
+  background-color: #f2f2f2;       
+  padding: 30px;                    
+  border-radius: 8px;              
+  box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.1); 
+  max-width: 900px;                
 }
 
+/* Título do formulário */
 h3 {
-  font-weight: bold;
+  font-weight: bold;             
 }
 
+/* Estilo dos rótulos (labels) dentro do formulário */
 .formulario-produto label {
-  font-weight: 600;
+  font-weight: 600;                
 }
 
+/* Estilo padrão dos botões personalizados */
 .custom-btn {
-  border-radius: 0 !important;       
-  background-color: #e6e6e6;            
-  color: #000;
-  border: 2px solid #b3b3b3;             
-  padding: 8px 15px;
-  width: 100px; 
+  border-radius: 0 !important;    
+  background-color: #e6e6e6;      
+  color: #000;                     
+  border: 2px solid #b3b3b3;      
+  padding: 4px 15px;               
+  width: 100px;                    
 }
 
+/* Estilo do campo de texto multilinha */
 textarea.form-control {
-  height: 38px; 
+  height: 38px;               
 }
+
+/* Estilo de hover nos botões */
 .custom-btn:hover {
   background-color: #b3b3b3; 
 }
 
+/* Espaçamento entre os elementos alinhados à direita */
 .d-flex.justify-content-end {
   gap: 16px;
 }
 
+/* Estilos aplicados quando a tela for menor que 768px (responsivo) */
 @media (max-width: 768px) {
+
+  /* Adiciona margem inferior entre os elementos da grid */
   .formulario-produto .row > div {
     margin-bottom: 1rem;
   }
 
+  /* Alinha botões e elementos verticalmente */
   .d-flex.justify-content-end {
     flex-direction: column;
     align-items: stretch;
   }
 
+  /* Botões ocupam 100% da largura em telas menores */
   .custom-btn {
     width: 100%;
     margin-bottom: 10px;
   }
 
+  /* Remove a margem inferior do último botão */
   .custom-btn:last-child {
     margin-bottom: 0;
   }

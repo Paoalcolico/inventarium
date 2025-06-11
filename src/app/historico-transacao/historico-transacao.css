@@ -1,0 +1,60 @@
+/* Título e barra */
+.titulo-produtos {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0;
+}
+
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pesquisa-input {
+  max-width: 300px;
+}
+
+/* Botões padrão (se usar) */
+.custom-btn {
+  border-radius: 0 !important;
+  background-color: #e6e6e6;
+  color: #000;
+  border: 2px solid #b3b3b3;
+  padding: 4px 13px;
+  width: 100px;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease-in-out;
+  line-height: 1.2;
+}
+
+.custom-btn:hover {
+  background-color: #d4d4d4;
+}
+
+/* Centralizar texto */
+.text-center {
+  text-align: center;
+}
+
+/* Lista de transações */
+.lista-transacoes .item-transacao {
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.lista-transacoes .item-transacao strong {
+  font-weight: 600;
+}
+
+/* Cores para tipo de transação */
+.text-success {
+  color: #198754; /* verde */
+}
+
+.text-danger {
+  color: #dc3545; /* vermelho */
+}

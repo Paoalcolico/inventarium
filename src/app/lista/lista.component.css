@@ -1,0 +1,44 @@
+/* Título da seção de produtos */
+.titulo-produtos {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0;
+}
+
+/* Layout da barra superior que contém o título, busca e botões */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Estilo do campo de busca (input) */
+.pesquisa-input {
+  max-width: 300px;
+}
+
+/* Estilo base para botões personalizados */
+.custom-btn {
+  border-radius: 0 !important;
+  background-color: #e6e6e6;
+  color: #000;
+  border: 2px solid #b3b3b3;
+  padding: 4px 13px;
+  width: 100px;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease-in-out;
+  line-height: 1.2;
+}
+
+/* Efeito de hover nos botões */
+.custom-btn:hover {
+  background-color: #d4d4d4;
+}
+
+/* Centralização de texto */
+.text-center {
+  text-align: center;
+}

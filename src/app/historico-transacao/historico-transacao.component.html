@@ -1,34 +1,51 @@
-<!-- src/app/historico-transacao/historico-transacao.component.html -->
-<div class="container mt-4">
-  <h3 class="text-center mb-3">Histórico de Transações</h3>
+<div class="container mt-5">
 
-  <table class="table table-bordered table-hover" *ngIf="transacoes.length > 0; else semTransacoes">
-    <thead class="table-light">
-      <tr>
-        <th>Produto</th>
-        <th>Código</th>
-        <th>Quantidade</th>
-        <th>Data</th>
-        <th>Tipo</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let transacao of transacoes">
-        <td>{{ transacao.produto.nome }}</td>
-        <td>{{ transacao.produto.codigoFabricante }}</td>
-        <td>{{ transacao.quantidade }}</td>
-        <td>{{ transacao.data | date: 'dd/MM/yyyy' }}</td>
-        <td>
-          <span [ngClass]="{
-            'text-success': transacao.tipo === 'entrada',
-            'text-danger': transacao.tipo === 'saida'
-          }">
-            {{ transacao.tipo | titlecase }}
-          </span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="header-bar">
+    <h3 class="titulo-produtos">Histórico de Transações</h3>
+
+    <div class="input-group pesquisa-input">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Pesquise aqui..."
+        [(ngModel)]="filtro"
+      />
+      <span class="input-group-text">
+        <i class="bi bi-search"></i>
+      </span>
+    </div>
+  </div>
+
+  <div
+    *ngIf="transacoesFiltradas.length > 0; else semTransacoes"
+    class="lista-transacoes mt-3"
+  >
+    <div
+      *ngFor="let transacao of transacoesFiltradas"
+      class="item-transacao p-3 mb-2 border rounded"
+    >
+      <div class="d-flex justify-content-between flex-wrap">
+        <div>
+          <strong>Produto:</strong> {{ transacao.produto.nome }}<br />
+          <strong>Código:</strong> {{ transacao.produto.codigoFabricante }}
+        </div>
+        <div>
+          <strong>Quantidade:</strong> {{ transacao.quantidade }}<br />
+          <strong>Data:</strong> {{ transacao.data | date : "dd/MM/yyyy" }}
+        </div>
+        <div class="text-end">
+          <strong>Tipo:</strong>
+          <span
+            [ngClass]="{
+              'text-success': transacao.tipo === 'entrada',
+              'text-danger': transacao.tipo === 'saida'
+            }"
+            >{{ transacao.tipo | titlecase }}</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
 
   <ng-template #semTransacoes>
     <div class="alert alert-info text-center">
