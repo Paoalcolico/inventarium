@@ -51,31 +51,6 @@ textarea.form-control {
   gap: 16px;
 }
 
-/* Regras responsivas para telas menores (ex: celular) */
-@media (max-width: 768px) {
-  /* Espaçamento entre colunas da grid */
-  .formulario-produto .row > div {
-    margin-bottom: 1rem;
-  }
-
-  /* Alinha botões verticalmente e os estica em telas pequenas */
-  .d-flex.justify-content-end {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  /* Botões ocupam largura total em telas pequenas */
-  .custom-btn {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  /* Remove a margem inferior do último botão */
-  .custom-btn:last-child {
-    margin-bottom: 0;
-  }
-}
-
 /* Centraliza texto */
 .text-center {
   text-align: center;
@@ -97,4 +72,37 @@ textarea.form-control {
 /* Define o espaçamento horizontal entre colunas da grid */
 .row.gx-3 {
   --bs-gutter-x: 1rem;
+}
+
+/* Tabela com bordas visíveis e uniformes */
+table.table {
+  border-collapse: collapse !important;
+  border: 1px solid #b3b3b3;
+}
+
+table.table th,
+table.table td {
+  border: 1px solid #b3b3b3;
+  vertical-align: middle;
+}
+
+/* Regras responsivas para telas menores (ex: celular) */
+@media (max-width: 768px) {
+  .formulario-produto .row > div {
+    margin-bottom: 1rem;
+  }
+
+  .d-flex.justify-content-end {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .custom-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .custom-btn:last-child {
+    margin-bottom: 0;
+  }
 }

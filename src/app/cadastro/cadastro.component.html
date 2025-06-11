@@ -53,7 +53,13 @@
 
   <!-- Botões de ação alinhados à direita: Cancelar e Salvar -->
   <div class="d-flex justify-content-end mt-4">
-    <button class="btn custom-btn me-2" (click)="limparCampos()">Cancelar</button>
+    <button
+      class="btn custom-btn me-2"
+      (click)="limparCampos()"
+      [routerLink]="['/']"
+    >
+      Cancelar
+    </button>
     <button class="btn custom-btn" (click)="adicionarProduto()">Salvar</button>
   </div>
-</div>
+
