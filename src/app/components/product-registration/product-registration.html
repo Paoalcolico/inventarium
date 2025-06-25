@@ -1,0 +1,56 @@
+<div class="container mt-5">
+  <div class="product-form mx-auto">
+    <h3 class="text-center mb-4">Cadastrar Produto</h3>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label class="form-label">Código de Fabricante:</label>
+        <input type="text" class="form-control" [(ngModel)]="newProduct().manufacturerCode" name="manufacturerCode" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Marca:</label>
+        <input type="text" class="form-control" [(ngModel)]="newProduct().brand" name="brand" />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label class="form-label">Localização:</label>
+        <input type="text" class="form-control" [(ngModel)]="newProduct().stockLocation" name="stockLocation" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Garantia (meses):</label>
+        <input type="number" class="form-control" [(ngModel)]="newProduct().warrantyMonths" name="warrantyMonths" />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label class="form-label">Nome:</label>
+        <input type="text" class="form-control" [(ngModel)]="newProduct().name" name="name" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Valor Unitário:</label>
+        <input type="number" step="0.01" class="form-control" [(ngModel)]="newProduct().unitPrice" name="unitPrice" />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label class="form-label">Quantidade:</label>
+        <input type="number" class="form-control" [(ngModel)]="newProduct().quantity" name="quantity" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Descrição:</label>
+        <textarea class="form-control" [(ngModel)]="newProduct().description" name="description" rows="3"></textarea>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end mt-4">
+      <button class="btn btn-secondary me-2" (click)="resetForm()" [routerLink]="['/products']">Cancelar</button>
+      <button class="btn btn-primary" (click)="saveProduct()" [disabled]="isSubmitting()">
+        {{ isSubmitting() ? 'Salvando...' : 'Salvar' }}
+      </button>
+    </div>
+  </div>
+</div>
