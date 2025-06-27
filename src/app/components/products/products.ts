@@ -1,4 +1,5 @@
 // src/app/components/products/products.component.ts
+
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -8,6 +9,7 @@ import { ProductService } from '../../services/product';
 
 @Component({
   selector: 'app-products',
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './products.html',
   styleUrls: ['./products.css']
@@ -16,7 +18,7 @@ export class ProductsComponent implements OnInit {
   searchTerm = signal('');
   products = signal<Product[]>([]);
   loading = signal(false);
-  
+
   filteredProducts = computed(() => {
     const term = this.searchTerm().toLowerCase();
     if (!term) {
@@ -34,14 +36,14 @@ export class ProductsComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadProducts();
   }
 
-  loadProducts() {
+  loadProducts(): void {
     this.loading.set(true);
     this.productService.getProducts().subscribe({
-      next: (products) => {
+      next: (products: Product[]) => {
         this.products.set(products);
         this.loading.set(false);
       },
@@ -52,13 +54,26 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  onSearchChange(term: string) {
+  loadSortedProducts(): void {
+    this.loading.set(true);
+    this.productService.getSortedProductsByName().subscribe({
+      next: (products: Product[]) => {
+        this.products.set(products);
+        this.loading.set(false);
+      },
+      error: (error) => {
+        console.error('Erro ao ordenar produtos:', error);
+        this.loading.set(false);
+      }
+    });
+  }
+
+  onSearchChange(term: string): void {
     this.searchTerm.set(term);
-    
-    // Se quiser usar a busca do backend:
+
     if (term.trim()) {
       this.productService.searchProducts(term).subscribe({
-        next: (products) => this.products.set(products),
+        next: (products: Product[]) => this.products.set(products),
         error: (error) => console.error('Erro na busca:', error)
       });
     } else {
@@ -66,11 +81,11 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  viewDetails(product: Product) {
+  viewDetails(product: Product): void {
     this.router.navigate(['/product-details', product.id]);
   }
 
-  goToRegistration() {
+  goToRegistration(): void {
     this.router.navigate(['/product-registration']);
   }
 }

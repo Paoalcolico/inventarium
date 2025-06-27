@@ -12,3 +12,4 @@ import { MenuComponent } from './components/menu/menu'
 export class AppComponent {
   title = 'product-management';
 }
+
