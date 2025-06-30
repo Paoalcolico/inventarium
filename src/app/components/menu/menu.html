@@ -1,36 +1,38 @@
-<!-- menu.component.html -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <!-- Marca no canto esquerdo -->
     <a class="navbar-brand d-flex align-items-center" routerLink="/menu">
-      <i class="bi bi-box-seam me-2"></i> 
-      Sistema de Produtos
+      <i class="bi bi-box-seam icon-brand"></i>
+      <span class="brand-text">Inventarium</span>
     </a>
 
+    <!-- Botão toggler para mobile -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
       aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarMenu">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <!-- Menu centralizado -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarMenu">
+      <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/products" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="bi bi-list-ul me-1"></i>Lista de Produtos
+          <a class="nav-link d-flex align-items-center" routerLink="/products" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="bi bi-list-ul icon-menu"></i><span>Lista de Produtos</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/product-registration" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="bi bi-plus-circle me-1"></i>Cadastro Produto
+          <a class="nav-link d-flex align-items-center" routerLink="/product-registration" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="bi bi-plus-circle icon-menu"></i><span>Cadastro Produto</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/transaction" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="bi bi-arrow-left-right me-1"></i>Transação
+          <a class="nav-link d-flex align-items-center" routerLink="/transaction" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="bi bi-arrow-left-right icon-menu"></i><span>Transação</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/transactions" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="bi bi-clock-history me-1"></i>Histórico
+          <a class="nav-link d-flex align-items-center" routerLink="/transactions" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="bi bi-clock-history icon-menu"></i><span>Histórico</span>
           </a>
         </li>
       </ul>

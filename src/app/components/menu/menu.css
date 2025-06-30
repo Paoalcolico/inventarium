@@ -1,0 +1,41 @@
+/* Marca (logo) com ícone e texto alinhados e espaçados */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* espaçamento garantido entre ícone e texto */
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase; /* título em maiúsculas */
+}
+
+/* Ícone na marca para tamanho consistente */
+.icon-brand {
+  font-size: 1.6rem;
+}
+
+/* Links do menu com ícone e texto alinhados e espaçados */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* espaçamento garantido entre ícone e texto */
+  font-size: 1.1rem;
+  text-transform: uppercase; /* rotas em maiúsculas */
+  color: #fff;
+}
+
+/* Ícones dos links com tamanho consistente */
+.icon-menu {
+  font-size: 1.2rem;
+}
+
+/* Centralizar as rotas no menu */
+#navbarMenu {
+  justify-content: center !important;
+}
+
+/* Para manter o menu responsivo */
+@media (max-width: 991.98px) {
+  #navbarMenu {
+    justify-content: flex-start !important;
+  }
+}

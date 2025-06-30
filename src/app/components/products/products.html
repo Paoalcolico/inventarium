@@ -1,13 +1,11 @@
-<div class="container mt-5">
+<div class="container mt-4">
   <div class="header-bar">
-    <h3 class="title">Lista de Produtos</h3>
-    
     <div class="input-group search-input">
       <input 
         #searchInput
         type="text" 
         class="form-control" 
-        placeholder="Buscar produtos..." 
+        placeholder="Pesquisar aqui..." 
         [value]="searchTerm()"
         (input)="onSearchChange(searchInput.value)" 
       />
@@ -17,35 +15,30 @@
     </div>
   </div>
 
-  <div class="d-flex justify-content-end mb-3 gap-2">
-  <button class="btn btn-secondary" (click)="loadSortedProducts()">
-    <i class="bi bi-sort-alpha-down"></i> Ordenar por Nome (BST)
-  </button>
+  <div class="btn-container">
+    <button class="btn btn-secondary btn-ordenar" (click)="loadSortedProducts()">Ordenar</button>
+    <button class="btn btn-primary btn-novo-produto" (click)="goToRegistration()">+ Produto</button>
+  </div>
 
-  <button class="btn btn-primary" (click)="goToRegistration()">
-    <i class="bi bi-plus-circle me-1"></i> Novo Produto
-  </button>
-</div>
-
-  <table class="table table-striped mt-3" *ngIf="filteredProducts().length > 0; else noProducts">
+  <table class="table table-striped mt-2" *ngIf="filteredProducts().length > 0; else noProducts">
     <thead>
       <tr>
-        <th class="text-center">Marca</th>
-        <th class="text-center">Nome</th>
-        <th class="text-center">Quantidade</th>
-        <th class="text-center">Valor Unitário</th>
-        <th class="text-center">Ações</th>
+        <th>Nome</th>
+        <th>Marca</th>
+        <th>Quantidade</th>
+        <th>Valor Unitário</th>
+        <th>Detalhes</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let product of filteredProducts()">
-        <td class="text-center">{{ product.brand }}</td>
-        <td class="text-center">{{ product.name }}</td>
-        <td class="text-center">{{ product.quantity }}</td>
-        <td class="text-center">{{ product.unitPrice | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
-        <td class="text-center">
-          <button class="btn btn-outline-primary btn-sm" (click)="viewDetails(product)">
-            <i class="bi bi-info-circle"></i> Details
+        <td>{{ product.name }}</td>
+        <td>{{ product.brand }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.unitPrice | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+        <td>
+          <button class="btn btn-outline-primary btn-sm btn-icone-detalhes" (click)="viewDetails(product)">
+            <i class="bi bi-info-circle"></i>
           </button>
         </td>
       </tr>
@@ -54,10 +47,7 @@
 
   <ng-template #noProducts>
     <div class="text-center mt-5">
-      <p class="text-muted">Nenhum produto registrado..</p>
-      <button class="btn btn-primary" (click)="goToRegistration()">
-        <i class="bi bi-plus-circle me-1"></i> Cadastre o primeiro produto.
-      </button>
+      <p class="no-products-text">Nenhum produto cadastrado</p>
     </div>
   </ng-template>
 </div>
