@@ -1,5 +1,5 @@
-<div class="container mt-5">
-  <h3 class="mb-4 text-center">Cadastrar Transação</h3>
+<div class="transaction-form">
+  <h3>Cadastrar Transação</h3>
 
   <div class="row mb-3 align-items-end">
     <div class="col-md-6">
@@ -25,24 +25,23 @@
   <table class="table table-bordered bg-white">
     <thead>
       <tr>
-        <th class="text-center">Produto</th>
-        <th class="text-center">Quantidade</th>
-        <th class="text-center">Valor unitário</th>
-        <th class="text-center">Total</th>
-        <th class="text-center">Ações</th>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Valor unitário</th>
+        <th>Total</th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of transactionItems(); let i = index">
-        <td class="text-center">{{ item.product.name }}</td>
-        <td class="text-center">{{ item.quantity }}</td>
-        <td class="text-center">{{ item.product.unitPrice | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
-        <td class="text-center">{{ getItemTotal(item) | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
-        <td class="text-center">
+        <td>{{ item.product.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.product.unitPrice | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+        <td>{{ getItemTotal(item) | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+        <td>
           <button class="btn btn-danger btn-sm" (click)="removeItem(i)">Remover</button>
         </td>
       </tr>
-
       <tr *ngIf="transactionItems().length === 0">
         <td colspan="5" class="text-center">Nenhum item adicionado.</td>
       </tr>
@@ -71,8 +70,8 @@
         <label for="transactionType" class="form-label">Tipo da Transação:</label>
         <select class="form-select" id="transactionType" [(ngModel)]="transactionType" name="transactionType" required>
           <option value="" disabled selected class="text-center">Selecionar</option>
-          <option value="ENTRADA" class="text-center">Entry</option>
-          <option value="SAIDA" class="text-center">Exit</option>
+          <option value="ENTRADA" class="text-center">Entrada</option>
+          <option value="SAIDA" class="text-center">Saída</option>
         </select>
       </div>
 

@@ -39,16 +39,16 @@
       </div>
 
       <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap">
-        <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Voltar</button>
         
         <div *ngIf="!isEditing()">
-          <button type="button" class="btn btn-primary me-2" (click)="enableEdit()">Edit</button>
-          <button type="button" class="btn btn-danger" (click)="deleteProduct()">Delete</button>
+          <button type="button" class="btn btn-primary me-2" (click)="enableEdit()">Editar</button>
+          <button type="button" class="btn btn-danger" (click)="deleteProduct()">Deletar</button>
         </div>
         
         <div *ngIf="isEditing()">
-          <button type="submit" class="btn btn-success me-2">Save</button>
-          <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+          <button type="submit" class="btn btn-success me-2">Salvar</button>
+          <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancelar</button>
         </div>
       </div>
     </form>
