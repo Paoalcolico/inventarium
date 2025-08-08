@@ -1,7 +1,18 @@
 <!-- app.component.html -->
 <div class="app-container">
-  <app-menu></app-menu>
-  <main class="container-fluid mt-3">
-    <router-outlet></router-outlet>
+  <header class="app-header">
+    <app-menu></app-menu>
+  </header>
+  
+  <main class="main-content">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
   </main>
+  
+  <footer class="app-footer">
+    <div class="container">
+      <p>&copy; 2025 Inventarium - Sistema de Gestão de Estoque Corporativo. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 </div>

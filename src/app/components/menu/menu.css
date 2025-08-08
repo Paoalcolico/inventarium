@@ -1,41 +1,286 @@
-/* Marca (logo) com ícone e texto alinhados e espaçados */
-.navbar-brand {
+/* Corporate Navigation */
+.corporate-nav {
+  background: white;
+  border-bottom: 1px solid var(--neutral-200);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
   display: flex;
   align-items: center;
-  gap: 16px; /* espaçamento garantido entre ícone e texto */
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-transform: uppercase; /* título em maiúsculas */
+  justify-content: space-between;
+  height: 4rem;
 }
 
-/* Ícone na marca para tamanho consistente */
-.icon-brand {
-  font-size: 1.6rem;
+/* Brand/Logo */
+.nav-brand {
+  flex-shrink: 0;
 }
 
-/* Links do menu com ícone e texto alinhados e espaçados */
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  text-decoration: none;
+  color: var(--neutral-700);
+}
+
+.brand-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-name {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--neutral-900);
+}
+
+.brand-subtitle {
+  font-size: var(--font-size-xs);
+  color: var(--neutral-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Navigation Menu */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  position: relative;
+}
+
 .nav-link {
   display: flex;
   align-items: center;
-  gap: 12px; /* espaçamento garantido entre ícone e texto */
-  font-size: 1.1rem;
-  text-transform: uppercase; /* rotas em maiúsculas */
-  color: #fff;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--neutral-600);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease-in-out;
+  position: relative;
 }
 
-/* Ícones dos links com tamanho consistente */
-.icon-menu {
-  font-size: 1.2rem;
+.nav-link:hover {
+  color: var(--primary-600);
+  background-color: var(--primary-50);
 }
 
-/* Centralizar as rotas no menu */
-#navbarMenu {
-  justify-content: center !important;
+.nav-link-active {
+  color: var(--primary-600);
+  background-color: var(--primary-50);
+  font-weight: 600;
 }
 
-/* Para manter o menu responsivo */
-@media (max-width: 991.98px) {
-  #navbarMenu {
-    justify-content: flex-start !important;
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background-color: var(--primary-600);
+  border-radius: 50%;
+}
+
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+  flex-shrink: 0;
+}
+
+.nav-text {
+  white-space: nowrap;
+}
+
+/* User Menu */
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--neutral-600);
+  background-color: var(--neutral-50);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--neutral-200);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.user-avatar {
+  width: 1.75rem;
+  height: 1.75rem;
+  background-color: var(--primary-100);
+  color: var(--primary-600);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.user-name {
+  color: var(--neutral-700);
+}
+
+/* Mobile Toggle */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  gap: 0.25rem;
+}
+
+.nav-toggle-line {
+  width: 1.5rem;
+  height: 2px;
+  background-color: var(--neutral-600);
+  border-radius: 1px;
+  transition: all 0.3s ease-in-out;
+  transform-origin: center;
+}
+
+.nav-toggle-active .nav-toggle-line:nth-child(1) {
+  transform: rotate(45deg) translateY(6px);
+}
+
+.nav-toggle-active .nav-toggle-line:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle-active .nav-toggle-line:nth-child(3) {
+  transform: rotate(-45deg) translateY(-6px);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 var(--spacing-sm);
+    height: 3.5rem;
+  }
+
+  .brand-text {
+    display: none;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid var(--neutral-200);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--spacing-lg) var(--spacing-md);
+    z-index: 50;
+  }
+
+  .nav-menu-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    width: 100%;
+  }
+
+  .nav-link {
+    justify-content: flex-start;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    width: 100%;
+  }
+
+  .nav-link-active::after {
+    display: none;
+  }
+
+  .nav-user {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    justify-content: center;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    height: 3rem;
+  }
+
+  .brand-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .brand-name {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* Animation for smooth transitions */
+@media (prefers-reduced-motion: no-preference) {
+  .nav-link {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-menu {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }

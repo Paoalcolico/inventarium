@@ -1,144 +1,373 @@
-.transaction-form {
-  background-color: #dbdbdb;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-  max-width: 900px;
-  margin: 0 auto 40px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Transaction Component - Corporate Theme */
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-.transaction-form h3 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #555454;    
-  text-transform: uppercase;
-  margin-bottom: 24px;
+.registration-header {
   text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.registration-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--neutral-800);
+  margin: 0 0 0.5rem 0;
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-800));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.registration-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--neutral-600);
+  margin: 0;
+  font-weight: 400;
+}
+
+.transaction-form {
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  padding: 2rem;
+  border: 1px solid var(--neutral-200);
 }
 
 .transaction-form label {
-  font-weight: 500;
-  margin-bottom: 6px;
-  color: #555454;   
+  font-weight: 600;
+  margin-bottom: 0.375rem;
+  color: var(--neutral-700);
   display: block;
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.025em;
 }
 
 .transaction-form input,
 .transaction-form select {
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  padding: 8px 12px;
-  font-size: 0.95rem;
-  background-color: #f9f9f9;
-  transition: border-color 0.3s ease;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--neutral-300);
+  padding: 0.75rem 1rem;
+  font-size: var(--font-size-sm);
+  background-color: white;
+  transition: all 0.2s ease;
+  font-family: var(--font-family);
+  color: var(--neutral-700);
+  height: 44px;
+  line-height: 1.4;
+}
+
+.transaction-form select {
+  padding-right: 2.5rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23374151'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+}
+
+.transaction-form select option {
+  padding: 0.5rem;
+  font-size: var(--font-size-sm);
+  color: var(--neutral-700);
+  background-color: white;
 }
 
 .transaction-form input:focus,
 .transaction-form select:focus {
   outline: none;
-  border-color: #059210;
-  background-color: #fff;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  transform: translateY(-1px);
 }
 
 .transaction-form button.btn {
-  font-weight: bold;
-  border-radius: 50px;
-  min-width: 120px;
-  padding: 8px 16px;
-  text-transform: uppercase;
-  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  justify-content: center;
+  letter-spacing: 0.025em;
+  box-shadow: var(--shadow-sm);
+  height: 44px;
+  min-width: 120px;
+  line-height: 1.4;
 }
 
 .transaction-form .btn-primary {
-  background-color: #059210;
+  background-color: var(--primary-600);
   color: white;
+  border-color: var(--primary-600);
 }
 
-.transaction-form .btn-primary:hover {
-  opacity: 0.9;
+.transaction-form .btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-700);
+  border-color: var(--primary-700);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .transaction-form .btn-secondary {
-  background-color: #6c757d;
-  color: white;
+  background-color: white;
+  color: var(--neutral-700);
+  border-color: var(--neutral-300);
 }
 
-.transaction-form .btn-secondary:hover {
-  opacity: 0.9;
+.transaction-form .btn-secondary:hover:not(:disabled) {
+  background-color: var(--neutral-50);
+  border-color: var(--neutral-400);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .transaction-form .btn-danger.btn-sm {
-  background-color: #cc0000;
+  background-color: var(--error-500);
   color: white;
-  padding: 4px 10px;
-  font-size: 0.85rem;
-  border-radius: 50px;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
+  border-color: var(--error-500);
+  padding: 0.5rem 0.75rem;
+  font-size: var(--font-size-xs);
+  min-width: auto;
 }
 
-.transaction-form .btn-danger.btn-sm:hover {
-  opacity: 0.85;
+.transaction-form .btn-danger.btn-sm:hover:not(:disabled) {
+  background-color: var(--error-600);
+  border-color: var(--error-600);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.transaction-form .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .transaction-form .table {
   width: 100%;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-md);
   background-color: white;
   border-collapse: separate;
   border-spacing: 0;
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
+  border: 1px solid var(--neutral-200);
+  table-layout: fixed;
 }
 
 .transaction-form .table th,
 .transaction-form .table td {
   vertical-align: middle;
-  padding: 12px 16px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid var(--neutral-200);
   font-weight: 500;
-  color: #555454;
+  color: var(--neutral-700);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Definir larguras proporcionais das colunas */
+.transaction-form .table th:nth-child(1),
+.transaction-form .table td:nth-child(1) {
+  width: 35%;
+  text-align: left;
+}
+
+.transaction-form .table th:nth-child(2),
+.transaction-form .table td:nth-child(2) {
+  width: 15%;
+  text-align: center;
+}
+
+.transaction-form .table th:nth-child(3),
+.transaction-form .table td:nth-child(3) {
+  width: 20%;
+  text-align: right;
+}
+
+.transaction-form .table th:nth-child(4),
+.transaction-form .table td:nth-child(4) {
+  width: 20%;
+  text-align: right;
+}
+
+.transaction-form .table th:nth-child(5),
+.transaction-form .table td:nth-child(5) {
+  width: 10%;
+  text-align: center;
 }
 
 .transaction-form .table thead th {
-  background-color: #f1f1f1;
+  background-color: var(--neutral-50);
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.025em;
+  color: var(--neutral-800);
+  border-bottom: 2px solid var(--neutral-200);
+}
+
+.transaction-form .table tbody tr:hover {
+  background-color: var(--neutral-50);
+}
+
+/* Estilo para a linha de "Nenhum item adicionado" */
+.transaction-form .table .text-center[colspan="5"] {
+  text-align: center !important;
+  font-style: italic;
+  color: var(--neutral-500);
+  padding: 2rem 1rem;
 }
 
 .transaction-form tfoot th {
-  font-size: 1.1rem;
-  background-color: #f8f9fa;
-  text-align: right;
-  padding-right: 20px;
+  font-size: var(--font-size-base);
+  background-color: var(--primary-50);
+  font-weight: 600;
+  color: var(--primary-700);
+  padding: 0.75rem 0.5rem;
 }
 
-.transaction-form tfoot tr th:last-child {
+.transaction-form tfoot tr th:nth-child(1),
+.transaction-form tfoot tr th:nth-child(2),
+.transaction-form tfoot tr th:nth-child(3) {
+  text-align: right;
+  border-right: none;
+}
+
+.transaction-form tfoot tr th:nth-child(4) {
+  text-align: right;
+}
+
+.transaction-form tfoot tr th:nth-child(5) {
   text-align: center;
 }
 
-.transaction-form .d-flex.justify-content-end.gap-2 {
-  gap: 12px;
-  flex-wrap: wrap;
+.transaction-form .row.mb-3 {
+  margin-bottom: 1.5rem !important;
 }
 
+.transaction-form .row.mb-3.align-items-end {
+  align-items: end;
+  gap: 0;
+}
+
+.transaction-form .col-md-6,
+.transaction-form .col-md-3,
+.transaction-form .col-md-2,
+.transaction-form .col-md-4 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.transaction-form .d-flex.justify-content-end.gap-2 {
+  gap: 1rem !important;
+  flex-wrap: nowrap !important;
+  margin-top: 0.5rem;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .registration-header {
+    margin-bottom: 2rem;
+  }
+  
+  .registration-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .registration-subtitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .transaction-form {
+    padding: 1.5rem;
+  }
+
   .transaction-form .row > div {
     margin-bottom: 1rem;
   }
 
+  /* Manter botões lado a lado mesmo no mobile */
   .transaction-form .d-flex.justify-content-end.gap-2 {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 0.75rem !important;
   }
 
-  .transaction-form .btn {
-    width: 100%;
+  .transaction-form .d-flex.justify-content-end.gap-2 .btn {
+    flex: 1;
+    max-width: 140px;
+    min-width: 100px;
+  }
+  
+  .transaction-form .table {
+    font-size: var(--font-size-sm);
+    table-layout: auto;
+  }
+  
+  .transaction-form .table th,
+  .transaction-form .table td {
+    padding: 0.5rem 0.25rem;
+    font-size: var(--font-size-xs);
+  }
+  
+  /* Ajustar larguras para mobile */
+  .transaction-form .table th:nth-child(1),
+  .transaction-form .table td:nth-child(1) {
+    width: 30%;
+  }
+  
+  .transaction-form .table th:nth-child(2),
+  .transaction-form .table td:nth-child(2) {
+    width: 15%;
+  }
+  
+  .transaction-form .table th:nth-child(3),
+  .transaction-form .table td:nth-child(3) {
+    width: 20%;
+  }
+  
+  .transaction-form .table th:nth-child(4),
+  .transaction-form .table td:nth-child(4) {
+    width: 20%;
+  }
+  
+  .transaction-form .table th:nth-child(5),
+  .transaction-form .table td:nth-child(5) {
+    width: 15%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+  
+  .transaction-form {
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+  }
+  
+  .registration-title {
+    font-size: var(--font-size-xl);
   }
 }

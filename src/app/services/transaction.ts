@@ -21,7 +21,6 @@ export class TransactionService {
     return this.http.post<Transaction>(this.apiUrl, transaction)
       .pipe(catchError(this.handleError));
   }
-
   getTransactionsByProduct(productId: number): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(`${this.apiUrl}/product/${productId}`)
       .pipe(catchError(this.handleError));

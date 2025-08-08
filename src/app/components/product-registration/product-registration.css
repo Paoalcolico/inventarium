@@ -1,87 +1,249 @@
-.product-form {
-  background-color: #dbdbdb;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+/* Product Registration - Clean Corporate Design */
+
+.container {
   max-width: 900px;
   margin: 0 auto;
+  padding: 2rem;
 }
 
-.product-form h3 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #555454;    
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: 24px;
+.registration-header {
   text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-.product-form label {
-  font-weight: 500;
-  margin-bottom: 6px;
-  color: #555454;   
+.registration-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--neutral-800);
+  margin: 0 0 0.5rem 0;
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-800));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.product-form input,
-.product-form textarea,
-.product-form select {
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  padding: 8px 12px;
-  font-size: 0.95rem;
-  background-color: #f9f9f9;
+.registration-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--neutral-600);
+  margin: 0;
+  font-weight: 400;
 }
 
-.product-form textarea {
+.registration-form {
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  padding: 2rem;
+  border: 1px solid var(--neutral-200);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group-full {
+  grid-column: span 2;
+  margin-top: 0.5rem;
+}
+
+.form-label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--neutral-700);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.025em;
+}
+
+.form-control {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--neutral-300);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: var(--font-family);
+  transition: all 0.2s ease;
+  background-color: white;
+  color: var(--neutral-700);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  transform: translateY(-1px);
+}
+
+.form-control::placeholder {
+  color: var(--neutral-400);
+  font-weight: 400;
+}
+
+textarea.form-control {
   resize: vertical;
-  min-height: 38px;
+  min-height: 80px;
+  line-height: 1.5;
 }
 
-.product-form .btn {
-  font-weight: bold;
-  border-radius: 50px;
-  min-width: 120px;
-  padding: 8px 16px;
+.input-with-prefix,
+.input-with-suffix {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.product-form .btn-primary {
-  background-color: #059210;
-  border: none;
-  text-transform: uppercase;
+.input-prefix {
+  position: absolute;
+  left: 1rem;
+  color: var(--neutral-500);
+  font-weight: 600;
+  z-index: 1;
+  font-size: var(--font-size-sm);
 }
 
-.product-form .btn-secondary {
-  background-color: #6c757d;
-  border: none;
-  text-transform: uppercase;
+.input-with-prefix .form-control {
+  padding-left: 2.75rem;
 }
 
-.product-form .btn:disabled {
-  opacity: 0.7;
+.input-suffix {
+  position: absolute;
+  right: 1rem;
+  color: var(--neutral-500);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+}
+
+.input-with-suffix .form-control {
+  padding-right: 4.5rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  min-width: 150px;
+  justify-content: center;
+  letter-spacing: 0.025em;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:focus {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
 }
 
-.product-form .btn:hover {
-  opacity: 0.9;
+.btn-primary {
+  background-color: var(--primary-600);
+  color: white;
+  border-color: var(--primary-600);
 }
 
-.product-form .d-flex.justify-content-end {
-  gap: 12px;
-  flex-wrap: wrap;
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-700);
+  border-color: var(--primary-700);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
+.btn-secondary {
+  background-color: white;
+  color: var(--neutral-700);
+  border-color: var(--neutral-300);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--neutral-50);
+  border-color: var(--neutral-400);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .product-form .row > div {
-    margin-bottom: 1rem;
+  .container {
+    padding: 1rem;
   }
-
-  .product-form .d-flex.justify-content-end {
+  
+  .registration-header {
+    margin-bottom: 2rem;
+  }
+  
+  .registration-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .registration-subtitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .registration-form {
+    padding: 1.5rem;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  .form-group-full {
+    grid-column: span 1;
+  }
+  
+  .form-actions {
     flex-direction: column;
-    align-items: stretch;
+    gap: 0.75rem;
   }
-
-  .product-form .btn {
+  
+  .btn {
     width: 100%;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+  
+  .registration-form {
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+  }
+  
+  .registration-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .form-grid {
+    gap: 1rem;
   }
 }

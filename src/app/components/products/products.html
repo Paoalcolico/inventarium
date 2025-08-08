@@ -1,53 +1,142 @@
-<div class="container mt-4">
-  <div class="header-bar">
-    <div class="input-group search-input">
-      <input 
-        #searchInput
-        type="text" 
-        class="form-control" 
-        placeholder="Pesquisar aqui..." 
-        [value]="searchTerm()"
-        (input)="onSearchChange(searchInput.value)" 
-      />
-      <span class="input-group-text">
-        <i class="bi bi-search"></i>
-      </span>
+<div class="page-header">
+  <div class="page-header-content">
+    <div class="page-header-text">
+      <h1 class="page-title">Gestão de Produtos</h1>
+      <p class="page-subtitle">Visualize e gerencie todo o seu catálogo de produtos</p>
+    </div>
+    <div class="page-header-actions">
+      <div class="search-container">
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+            <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <input 
+            #searchInput
+            type="text" 
+            class="search-input" 
+            placeholder="Pesquisar produtos..." 
+            [value]="searchTerm()"
+            (input)="onSearchChange(searchInput.value)" 
+          />
+        </div>
+      </div>
+      <button class="btn btn-secondary btn-action" (click)="loadSortedProducts()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M7 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M10 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Ordenar
+      </button>
+      <button class="btn btn-primary btn-action" (click)="goToRegistration()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Novo Produto
+      </button>
     </div>
   </div>
-
-  <div class="btn-container">
-    <button class="btn btn-secondary btn-ordenar" (click)="loadSortedProducts()">Ordenar</button>
-    <button class="btn btn-primary btn-novo-produto" (click)="goToRegistration()">+ Produto</button>
-  </div>
-
-  <table class="table table-striped mt-2" *ngIf="filteredProducts().length > 0; else noProducts">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Marca</th>
-        <th>Quantidade</th>
-        <th>Valor Unitário</th>
-        <th>Detalhes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of filteredProducts()">
-        <td>{{ product.name }}</td>
-        <td>{{ product.brand }}</td>
-        <td>{{ product.quantity }}</td>
-        <td>{{ product.unitPrice | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
-        <td>
-          <button class="btn btn-outline-primary btn-sm btn-icone-detalhes" (click)="viewDetails(product)">
-            <i class="bi bi-info-circle"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <ng-template #noProducts>
-    <div class="text-center mt-5">
-      <p class="no-products-text">Nenhum produto cadastrado</p>
-    </div>
-  </ng-template>
 </div>
+
+<!-- Stats Cards -->
+<div class="stats-grid" style="display: flex !important; flex-direction: row !important; gap: 1rem !important; flex-wrap: nowrap !important;">
+  <div class="stat-card" style="flex: 1 !important; text-align: center !important;">
+    <div class="stat-icon primary">📦</div>
+    <h3 class="stat-value">{{ filteredProducts().length }}</h3>
+    <p class="stat-label">Total de Produtos</p>
+  </div>
+  <div class="stat-card" style="flex: 1 !important; text-align: center !important;">
+    <div class="stat-icon success">✅</div>
+    <h3 class="stat-value">{{ getProductsInStock() }}</h3>
+    <p class="stat-label">Em Estoque</p>
+  </div>
+  <div class="stat-card" style="flex: 1 !important; text-align: center !important;">
+    <div class="stat-icon warning">⚠️</div>
+    <h3 class="stat-value">{{ getLowStockProducts() }}</h3>
+    <p class="stat-label">Estoque Baixo</p>
+  </div>
+  <div class="stat-card" style="flex: 1 !important; text-align: center !important;">
+    <div class="stat-icon error">❌</div>
+    <h3 class="stat-value">{{ getOutOfStockProducts() }}</h3>
+    <p class="stat-label">Sem Estoque</p>
+  </div>
+</div>
+
+<!-- Products Table -->
+<div class="data-table" *ngIf="filteredProducts().length > 0; else noProducts">
+  <div class="table-header">
+    <h3 class="table-title">Lista de Produtos</h3>
+  </div>
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Marca</th>
+          <th>Estoque</th>
+          <th>Valor Unitário</th>
+          <th>Status</th>
+          <th class="text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of filteredProducts()">
+          <td>
+            <div class="product-info">
+              <h4 class="product-name">{{ product.name }}</h4>
+              <p class="product-code" *ngIf="product.manufacturerCode">Cód: {{ product.manufacturerCode }}</p>
+            </div>
+          </td>
+          <td>
+            <span class="product-brand">{{ product.brand }}</span>
+          </td>
+          <td>
+            <span class="stock-quantity" [class]="getStockClass(product.quantity)">
+              {{ product.quantity }} unid.
+            </span>
+          </td>
+          <td>
+            <span class="product-price">{{ product.unitPrice | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
+          </td>
+          <td>
+            <span class="badge" [class]="getStockBadgeClass(product.quantity)">
+              {{ getStockStatus(product.quantity) }}
+            </span>
+          </td>
+          <td class="text-center">
+            <button class="btn btn-sm btn-secondary" (click)="viewDetails(product)" title="Ver detalhes">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 1C12 1 4 9 12 9S20 1 12 1" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 23C12 23 20 15 12 15S4 23 12 23" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #noProducts>
+  <div class="card">
+    <div class="card-body text-center">
+      <div class="table-empty">
+        <div class="table-empty-icon">📦</div>
+        <h3>Nenhum produto encontrado</h3>
+        <p>Comece adicionando seu primeiro produto ao catálogo</p>
+        <button class="btn btn-primary mt-md" (click)="goToRegistration()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Adicionar Primeiro Produto
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>

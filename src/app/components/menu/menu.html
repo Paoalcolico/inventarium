@@ -1,41 +1,92 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid d-flex justify-content-between align-items-center">
-    <!-- Marca no canto esquerdo -->
-    <a class="navbar-brand d-flex align-items-center" routerLink="/menu">
-      <i class="bi bi-box-seam icon-brand"></i>
-      <span class="brand-text">Inventarium</span>
-    </a>
+<nav class="corporate-nav">
+  <div class="nav-container">
+    <!-- Logo e marca -->
+    <div class="nav-brand">
+      <a routerLink="/menu" class="brand-link">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Inventarium</span>
+          <span class="brand-subtitle">Gestão de Estoque</span>
+        </div>
+      </a>
+    </div>
 
-    <!-- Botão toggler para mobile -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
-      aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Menu centralizado -->
-    <div class="collapse navbar-collapse justify-content-center" id="navbarMenu">
-      <ul class="navbar-nav mb-2 mb-lg-0">
+    <!-- Menu principal -->
+    <div class="nav-menu" [class.nav-menu-open]="isMenuOpen()">
+      <ul class="nav-links">
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" routerLink="/products" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="bi bi-list-ul icon-menu"></i><span>Lista de Produtos</span>
+          <a class="nav-link" routerLink="/products" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{ exact: false }">
+            <span class="nav-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 6H3.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 12H3.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 18H3.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="nav-text">Produtos</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" routerLink="/product-registration" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="bi bi-plus-circle icon-menu"></i><span>Cadastro Produto</span>
+          <a class="nav-link" routerLink="/product-registration" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{ exact: false }">
+            <span class="nav-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="nav-text">Novo Produto</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" routerLink="/transaction" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="bi bi-arrow-left-right icon-menu"></i><span>Transação</span>
+          <a class="nav-link" routerLink="/transaction" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{ exact: false }">
+            <span class="nav-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M17 17L17 7L7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="nav-text">Nova Transação</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" routerLink="/transactions" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="bi bi-clock-history icon-menu"></i><span>Histórico</span>
+          <a class="nav-link" routerLink="/transactions" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{ exact: false }">
+            <span class="nav-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <polyline points="12,6 12,12 16,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="nav-text">Histórico</span>
           </a>
         </li>
       </ul>
+    </div>
+
+    <!-- Menu mobile toggle -->
+    <button class="nav-toggle" (click)="toggleMenu()" [class.nav-toggle-active]="isMenuOpen()">
+      <span class="nav-toggle-line"></span>
+      <span class="nav-toggle-line"></span>
+      <span class="nav-toggle-line"></span>
+    </button>
+
+    <!-- User menu -->
+    <div class="nav-user">
+      <div class="user-avatar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+      <span class="user-name">Usuário</span>
     </div>
   </div>
 </nav>
