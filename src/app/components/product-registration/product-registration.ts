@@ -1,9 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../models/product';
+import { Marca } from '../../models/marca';
 import { ProductService } from '../../services/product';
+import { MarcaService } from '../../services/marca';
 
 @Component({
   selector: 'app-product-registration',
@@ -11,10 +13,10 @@ import { ProductService } from '../../services/product';
   templateUrl: './product-registration.html',
   styleUrls: ['./product-registration.css']
 })
-export class ProductRegistrationComponent {
+export class ProductRegistrationComponent implements OnInit {
   newProduct = signal<Product>({
     manufacturerCode: '',
-    brand: '',
+    brand: 1, // Agora é number, padrão 1
     stockLocation: '',
     warrantyMonths: 12,
     name: '',
@@ -23,19 +25,36 @@ export class ProductRegistrationComponent {
     quantity: 0
   });
 
+  marcas = signal<Marca[]>([]);
   isSubmitting = signal(false);
   errorMessage = signal('');
 
   constructor(
     private productService: ProductService,
+    private marcaService: MarcaService,
     private router: Router
   ) { }
+
+  ngOnInit() {
+    this.loadMarcas();
+  }
+
+  loadMarcas() {
+    this.marcaService.getMarcas().subscribe({
+      next: (marcas) => {
+        this.marcas.set(marcas);
+      },
+      error: (error) => {
+        console.error('Erro ao carregar marcas:', error);
+      }
+    });
+  }
 
   isFormValid(): boolean {
     const product = this.newProduct();
     return !!(
       product.manufacturerCode.trim() &&
-      product.brand.trim() &&
+      product.brand > 0 && // Agora verifica se é maior que 0
       product.stockLocation.trim() &&
       product.name.trim() &&
       product.description.trim() &&
@@ -71,7 +90,7 @@ export class ProductRegistrationComponent {
   resetForm() {
     this.newProduct.set({
       manufacturerCode: '',
-      brand: '',
+      brand: 1, // Agora é number
       stockLocation: '',
       warrantyMonths: 12,
       name: '',

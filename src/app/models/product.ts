@@ -1,7 +1,7 @@
 export interface Product {
   id?: number;
   manufacturerCode: string;
-  brand: string;
+  brand: number; // Mudado para number pois agora é marcaId
   stockLocation: string;
   warrantyMonths: number;
   name: string;

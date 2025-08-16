@@ -13,7 +13,10 @@
       
       <div class="form-group">
         <label class="form-label">Marca</label>
-        <input type="text" class="form-control" [(ngModel)]="newProduct().brand" name="brand" />
+        <select class="form-control" [(ngModel)]="newProduct().brand" name="brand">
+          <option value="">Selecione uma marca</option>
+          <option *ngFor="let marca of marcas()" [value]="marca.id">{{ marca.nome }}</option>
+        </select>
       </div>
       
       <div class="form-group">

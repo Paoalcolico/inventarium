@@ -1,11 +1,11 @@
-// src/app/components/products/products.component.ts
-
-import { Component, OnInit, signal, computed } from '@angular/core';
+import { Component, signal, computed, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../models/product';
+import { Marca } from '../../models/marca';
 import { ProductService } from '../../services/product';
+import { MarcaService } from '../../services/marca';
 
 @Component({
   selector: 'app-products',
@@ -26,7 +26,6 @@ export class ProductsComponent implements OnInit {
     }
     return this.products().filter(product =>
       product.name.toLowerCase().includes(term) ||
-      product.brand.toLowerCase().includes(term) ||
       product.manufacturerCode.toLowerCase().includes(term)
     );
   });
