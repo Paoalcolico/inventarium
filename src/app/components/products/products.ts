@@ -15,20 +15,93 @@ import { MarcaService } from '../../services/marca';
   styleUrls: ['./products.css']
 })
 export class ProductsComponent implements OnInit {
+  selectedFilter = signal<'all' | 'inStock' | 'lowStock' | 'outOfStock'>('all');
+
+  filterBy(type: 'all' | 'inStock' | 'lowStock' | 'outOfStock') {
+    this.selectedFilter.set(type);
+    this.page.set(1);
+  }
+
+  get allProductsCount(): number {
+    return this.products().length;
+  }
+  get inStockCount(): number {
+    return this.products().filter(p => p.quantity > 5).length;
+  }
+  get lowStockCount(): number {
+    return this.products().filter(p => p.quantity > 0 && p.quantity <= 5).length;
+  }
+  get outOfStockCount(): number {
+    return this.products().filter(p => p.quantity === 0).length;
+  }
+  itemsPerPage = signal(25);
+  orderBy = signal('name-asc');
+  applyOrdering(): void {
+    const sorted = [...this.products()];
+    switch (this.orderBy()) {
+      case 'name-asc':
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case 'name-desc':
+        sorted.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      case 'brand-asc':
+        sorted.sort((a, b) => String(a.brand ?? '').localeCompare(String(b.brand ?? '')));
+        break;
+      case 'brand-desc':
+        sorted.sort((a, b) => String(b.brand ?? '').localeCompare(String(a.brand ?? '')));
+        break;
+      case 'status':
+        sorted.sort((a, b) => this.getStockStatus(a.quantity).localeCompare(this.getStockStatus(b.quantity)));
+        break;
+    }
+    this.products.set(sorted);
+    this.page.set(1);
+  }
   searchTerm = signal('');
   products = signal<Product[]>([]);
   loading = signal(false);
 
+  // Paginação
+  page = signal(1);
+
   filteredProducts = computed(() => {
     const term = this.searchTerm().toLowerCase();
-    if (!term) {
-      return this.products();
+    let products = this.products();
+
+    if (term) {
+      products = products.filter(product =>
+        product.name.toLowerCase().includes(term) ||
+        product.manufacturerCode.toLowerCase().includes(term)
+      );
     }
-    return this.products().filter(product =>
-      product.name.toLowerCase().includes(term) ||
-      product.manufacturerCode.toLowerCase().includes(term)
-    );
+
+    switch (this.selectedFilter()) {
+      case 'inStock':
+        return products.filter(p => p.quantity > 5);
+      case 'lowStock':
+        return products.filter(p => p.quantity > 0 && p.quantity <= 5);
+      case 'outOfStock':
+        return products.filter(p => p.quantity === 0);
+      default:
+        return products;
+    }
   });
+
+  paginatedProducts = computed(() => {
+  const start = (this.page() - 1) * this.itemsPerPage();
+  return this.filteredProducts().slice(start, start + this.itemsPerPage());
+  });
+
+  get totalPages(): number {
+  return Math.ceil(this.filteredProducts().length / this.itemsPerPage());
+  }
+
+  setPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.page.set(page);
+    }
+  }
 
   constructor(
     private productService: ProductService,
@@ -68,11 +141,15 @@ export class ProductsComponent implements OnInit {
   }
 
   onSearchChange(term: string): void {
-    this.searchTerm.set(term);
-
+  this.searchTerm.set(term);
+  this.page.set(1);
+    this.page.set(1); // Volta para a primeira página ao buscar
     if (term.trim()) {
       this.productService.searchProducts(term).subscribe({
-        next: (products: Product[]) => this.products.set(products),
+        next: (products: Product[]) => {
+          this.products.set(products);
+          this.page.set(1);
+        },
         error: (error) => console.error('Erro na busca:', error)
       });
     } else {

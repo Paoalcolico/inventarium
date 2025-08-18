@@ -21,14 +21,6 @@
           />
         </div>
       </div>
-      <button class="btn btn-secondary btn-action" (click)="loadSortedProducts()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M7 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M10 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        Ordenar
-      </button>
       <button class="btn btn-primary btn-action" (click)="goToRegistration()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
@@ -42,37 +34,60 @@
 </div>
 
 <!-- Stats Cards -->
-<div class="stats-grid" style="display: flex !important; flex-direction: row !important; gap: 1rem !important; flex-wrap: nowrap !important;">
-  <div class="stat-card" style="flex: 1 !important; text-align: center !important;">
+<div class="stats-grid d-flex flex-row gap-3 flex-nowrap">
+  <div class="stat-card card text-center cursor-pointer"
+       [ngClass]="{'border-primary': selectedFilter() === 'all', 'shadow': selectedFilter() === 'all'}"
+       (click)="filterBy('all')">
     <div class="stat-icon primary">📦</div>
-    <h3 class="stat-value">{{ filteredProducts().length }}</h3>
+    <h3 class="stat-value">{{ allProductsCount }}</h3>
     <p class="stat-label">Total de Produtos</p>
   </div>
-  <div class="stat-card" style="flex: 1 !important; text-align: center !important;">
+  <div class="stat-card card text-center cursor-pointer"
+       [ngClass]="{'border-success': selectedFilter() === 'inStock', 'shadow': selectedFilter() === 'inStock'}"
+       (click)="filterBy('inStock')">
     <div class="stat-icon success">✅</div>
-    <h3 class="stat-value">{{ getProductsInStock() }}</h3>
+    <h3 class="stat-value">{{ inStockCount }}</h3>
     <p class="stat-label">Em Estoque</p>
   </div>
-  <div class="stat-card" style="flex: 1 !important; text-align: center !important;">
+  <div class="stat-card card text-center cursor-pointer"
+       [ngClass]="{'border-warning': selectedFilter() === 'lowStock', 'shadow': selectedFilter() === 'lowStock'}"
+       (click)="filterBy('lowStock')">
     <div class="stat-icon warning">⚠️</div>
-    <h3 class="stat-value">{{ getLowStockProducts() }}</h3>
+    <h3 class="stat-value">{{ lowStockCount }}</h3>
     <p class="stat-label">Estoque Baixo</p>
   </div>
-  <div class="stat-card" style="flex: 1 !important; text-align: center !important;">
+  <div class="stat-card card text-center cursor-pointer"
+       [ngClass]="{'border-danger': selectedFilter() === 'outOfStock', 'shadow': selectedFilter() === 'outOfStock'}"
+       (click)="filterBy('outOfStock')">
     <div class="stat-icon error">❌</div>
-    <h3 class="stat-value">{{ getOutOfStockProducts() }}</h3>
+    <h3 class="stat-value">{{ outOfStockCount }}</h3>
     <p class="stat-label">Sem Estoque</p>
   </div>
 </div>
 
 <!-- Products Table -->
 <div class="data-table" *ngIf="filteredProducts().length > 0; else noProducts">
-  <div class="table-header">
-    <h3 class="table-title">Lista de Produtos</h3>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="table-title m-0">Lista de Produtos</h3>
+    <div class="d-flex align-items-center gap-2">
+      <select class="form-select w-auto" [(ngModel)]="orderBy" (change)="applyOrdering()">
+        <option value="name-asc">Nome (A-Z)</option>
+        <option value="name-desc">Nome (Z-A)</option>
+        <option value="brand-asc">Marca (A-Z)</option>
+        <option value="brand-desc">Marca (Z-A)</option>
+        <option value="status">Status</option>
+      </select>
+      <select class="form-select w-auto" [(ngModel)]="itemsPerPage" (change)="setPage(1)">
+        <option [ngValue]="10">10 por página</option>
+        <option [ngValue]="20">20 por página</option>
+        <option [ngValue]="50">50 por página</option>
+        <option [ngValue]="100">100 por página</option>
+      </select>
+    </div>
   </div>
-  <div class="table-container">
-    <table class="table">
-      <thead>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered align-middle">
+      <thead class="table-light">
         <tr>
           <th>Produto</th>
           <th>Marca</th>
@@ -83,7 +98,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of filteredProducts()">
+        <tr *ngFor="let product of paginatedProducts()">
           <td>
             <div class="product-info">
               <h4 class="product-name">{{ product.name }}</h4>
@@ -119,6 +134,21 @@
       </tbody>
     </table>
   </div>
+
+  <!-- Paginação Bootstrap -->
+  <nav *ngIf="totalPages > 1" aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="page() === 1">
+        <button class="page-link" (click)="setPage(page() - 1)" [disabled]="page() === 1">Anterior</button>
+      </li>
+      <li class="page-item" *ngFor="let p of [].constructor(totalPages); let i = index" [class.active]="page() === i + 1">
+        <button class="page-link" (click)="setPage(i + 1)">{{ i + 1 }}</button>
+      </li>
+      <li class="page-item" [class.disabled]="page() === totalPages">
+        <button class="page-link" (click)="setPage(page() + 1)" [disabled]="page() === totalPages">Próxima</button>
+      </li>
+    </ul>
+  </nav>
 </div>
 
 <ng-template #noProducts>
