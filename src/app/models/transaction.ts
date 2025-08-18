@@ -1,21 +1,15 @@
 export interface Transaction {
   id?: number;
-  productId: number;
-  productName: string;
-  productBrand?: string;
-  type: 'ENTRADA' | 'SAIDA'; // MAIÚSCULO para bater com o backend
-  quantity: number;
-  unitPrice: number;
+  type: 'ENTRADA' | 'SAIDA';
   totalValue: number;
   date: string; // ISO string format
+  usuarioId: number;
   description?: string;
 }
 
 export interface TransactionRequest {
-  productId: number;
-  productName?: string;
   type: 'ENTRADA' | 'SAIDA';
-  quantity: number;
-  unitPrice: number;
+  totalValue: number;
+  usuarioId: number;
   description?: string;
 }

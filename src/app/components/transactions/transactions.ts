@@ -28,9 +28,7 @@ export class TransactionsComponent implements OnInit {
     if (this.searchTerm()) {
       const term = this.searchTerm().toLowerCase();
       filtered = filtered.filter(t => 
-        t.productName.toLowerCase().includes(term) ||
-        t.description?.toLowerCase().includes(term) ||
-        t.productBrand?.toLowerCase().includes(term)
+        t.description?.toLowerCase().includes(term)
       );
     }
 

@@ -130,24 +130,17 @@ export class TransactionComponent implements OnInit {
     this.loading.set(true);
     this.errorMessage.set('');
     
-    // Criar requests para cada item
-    const transactionRequests = this.transactionItems().map(item => {
-      const transactionData: TransactionRequest = {
-        productId: item.product.id!,
-        productName: item.product.name,
-        type: this.transactionType() as 'ENTRADA' | 'SAIDA',
-        quantity: item.quantity,
-        unitPrice: item.product.unitPrice,
-        description: this.description() || `Transação ${this.transactionType()} - ${this.transactionDate()}`
-      };
+    // Criar uma única transação com o valor total de todos os itens
+    const transactionData: TransactionRequest = {
+      type: this.transactionType() as 'ENTRADA' | 'SAIDA',
+      totalValue: this.totalValue(),
+      usuarioId: 1, // Por enquanto, usuário fixo
+      description: this.description() || `Transação ${this.transactionType()} - ${this.transactionDate()}`
+    };
 
-      return this.transactionService.addTransaction(transactionData);
-    });
-
-    // Executar todas as transações usando forkJoin
-    forkJoin(transactionRequests).subscribe({
-      next: (results) => {
-        console.log('Transações processadas com sucesso:', results);
+    this.transactionService.addTransaction(transactionData).subscribe({
+      next: (result) => {
+        console.log('Transação processada com sucesso:', result);
         this.resetForm();
         this.loading.set(false);
         this.router.navigate(['/transactions']);
