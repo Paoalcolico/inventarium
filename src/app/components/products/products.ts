@@ -16,6 +16,7 @@ import { MarcaService } from '../../services/marca';
 })
 export class ProductsComponent implements OnInit {
   selectedFilter = signal<'all' | 'inStock' | 'lowStock' | 'outOfStock'>('all');
+  toggleOrderMenu = false;
 
   filterBy(type: 'all' | 'inStock' | 'lowStock' | 'outOfStock') {
     this.selectedFilter.set(type);
@@ -45,14 +46,11 @@ export class ProductsComponent implements OnInit {
       case 'name-desc':
         sorted.sort((a, b) => b.name.localeCompare(a.name));
         break;
-      case 'brand-asc':
-        sorted.sort((a, b) => String(a.brand ?? '').localeCompare(String(b.brand ?? '')));
+      case 'price-asc':
+        sorted.sort((a, b) => a.unitPrice - b.unitPrice);
         break;
-      case 'brand-desc':
-        sorted.sort((a, b) => String(b.brand ?? '').localeCompare(String(a.brand ?? '')));
-        break;
-      case 'status':
-        sorted.sort((a, b) => this.getStockStatus(a.quantity).localeCompare(this.getStockStatus(b.quantity)));
+      case 'price-desc':
+        sorted.sort((a, b) => b.unitPrice - a.unitPrice);
         break;
     }
     this.products.set(sorted);
@@ -141,9 +139,8 @@ export class ProductsComponent implements OnInit {
   }
 
   onSearchChange(term: string): void {
-  this.searchTerm.set(term);
-  this.page.set(1);
-    this.page.set(1); // Volta para a primeira página ao buscar
+    this.searchTerm.set(term);
+    this.page.set(1);
     if (term.trim()) {
       this.productService.searchProducts(term).subscribe({
         next: (products: Product[]) => {

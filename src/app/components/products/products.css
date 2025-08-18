@@ -208,6 +208,35 @@
   margin: 0 0 var(--spacing-lg) 0;
 }
 
+/* Define larguras fixas para as colunas */
+.table th, .table td {
+  white-space: nowrap; /* Evita quebra de linha */
+}
+
+.table th:nth-child(1), .table td:nth-child(1) {
+  width: 25%; /* Produto */
+}
+
+.table th:nth-child(2), .table td:nth-child(2) {
+  width: 15%; /* Marca */
+}
+
+.table th:nth-child(3), .table td:nth-child(3) {
+  width: 10%; /* Estoque */
+}
+
+.table th:nth-child(4), .table td:nth-child(4) {
+  width: 15%; /* Valor Unitário */
+}
+
+.table th:nth-child(5), .table td:nth-child(5) {
+  width: 10%; /* Status */
+}
+
+.table th:nth-child(6), .table td:nth-child(6) {
+  width: 25%; /* Ações */
+}
+
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
   .page-header-content {

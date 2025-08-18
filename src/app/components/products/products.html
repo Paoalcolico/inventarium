@@ -70,19 +70,23 @@
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h3 class="table-title m-0">Lista de Produtos</h3>
     <div class="d-flex align-items-center gap-2">
-      <select class="form-select w-auto" [(ngModel)]="orderBy" (change)="applyOrdering()">
-        <option value="name-asc">Nome (A-Z)</option>
-        <option value="name-desc">Nome (Z-A)</option>
-        <option value="brand-asc">Marca (A-Z)</option>
-        <option value="brand-desc">Marca (Z-A)</option>
-        <option value="status">Status</option>
-      </select>
       <select class="form-select w-auto" [(ngModel)]="itemsPerPage" (change)="setPage(1)">
         <option [ngValue]="10">10 por página</option>
         <option [ngValue]="20">20 por página</option>
         <option [ngValue]="50">50 por página</option>
         <option [ngValue]="100">100 por página</option>
       </select>
+      <button class="btn btn-ordenar btn-action d-flex align-items-center" style="gap:0.5rem;" (click)="toggleOrderMenu = !toggleOrderMenu" title="Ordenar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M3 6h18M7 12h14M10 18h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="position-relative" *ngIf="toggleOrderMenu">
+        <div class="card shadow-sm p-2" style="min-width:160px; position:absolute; right:0; z-index:10;">
+          <button class="btn btn-outline-primary w-100 mb-1" style="font-weight:400; text-transform:capitalize;" (click)="orderBy.set('name-asc'); applyOrdering(); toggleOrderMenu=false">nome (a-z)</button>
+          <button class="btn btn-outline-primary w-100 mb-1" style="font-weight:400; text-transform:capitalize;" (click)="orderBy.set('name-desc'); applyOrdering(); toggleOrderMenu=false">nome (z-a)</button>
+          <button class="btn btn-outline-primary w-100 mb-1" style="font-weight:400; text-transform:capitalize;" (click)="orderBy.set('price-asc'); applyOrdering(); toggleOrderMenu=false">menor valor unitario</button>
+          <button class="btn btn-outline-primary w-100" style="font-weight:400; text-transform:capitalize;" (click)="orderBy.set('price-desc'); applyOrdering(); toggleOrderMenu=false">maior valor unitario</button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="table-responsive">
