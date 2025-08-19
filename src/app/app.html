@@ -1,16 +1,16 @@
 <!-- app.component.html -->
-<div class="app-container">
-  <header class="app-header">
+<div class="app-container" [class.login-page]="!isAuthenticated">
+  <header class="app-header" *ngIf="isAuthenticated">
     <app-menu></app-menu>
   </header>
   
-  <main class="main-content">
-    <div class="container">
+  <main class="main-content" [class.no-header]="!isAuthenticated">
+    <div class="container" [class.full-height]="!isAuthenticated">
       <router-outlet></router-outlet>
     </div>
   </main>
   
-  <footer class="app-footer">
+  <footer class="app-footer" *ngIf="isAuthenticated">
     <div class="container">
       <p>&copy; 2025 Inventarium - Sistema de Gestão de Estoque Corporativo. Todos os direitos reservados.</p>
     </div>
