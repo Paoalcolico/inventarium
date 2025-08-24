@@ -34,81 +34,45 @@
     </div>
   </div>
 
-  <!-- Filter Buttons -->
-  <div class="filter-section">
-    <div class="filter-buttons">
-      <button 
-        type="button" 
-        class="btn filter-btn"
-        [class.active]="filterType() === 'all'"
-        (click)="setFilterType('all')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 12A9 9 0 1 1 12 21A9 9 0 0 1 3 12Z" stroke="currentColor" stroke-width="2"/>
-          <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <!-- Cards de estatísticas como filtro -->
+  <div class="stats-grid" *ngIf="filteredTransactions().length > 0">
+    <div 
+      class="stat-card"
+      style="cursor:pointer"
+      (click)="setFilterType('all')"
+    >
+      <div class="stat-icon primary">📊</div>
+      <h3 class="stat-value">{{ transactions().length }}</h3>
+      <p class="stat-label">Total de Transações</p>
+    </div>
+    <div 
+      class="stat-card"
+      [class.active]="filterType() === 'ENTRADA'"
+      (click)="setFilterType('ENTRADA')"
+      style="cursor:pointer"
+    >
+      <div class="stat-icon success">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M7 10L12 5L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
-        Todas
-      </button>
-      <button 
-        type="button" 
-        class="btn filter-btn filter-entrada"
-        [class.active]="filterType() === 'ENTRADA'"
-        (click)="setFilterType('ENTRADA')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2L12 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M17 7L12 2L7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        Entradas
-      </button>
-      <button 
-        type="button" 
-        class="btn filter-btn filter-saida"
-        [class.active]="filterType() === 'SAIDA'"
-        (click)="setFilterType('SAIDA')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2L12 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M7 17L12 22L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        Saídas
-      </button>
+      </div>
+      <h3 class="stat-value">{{ entryTransactions().length }}</h3>
+      <p class="stat-label">Entradas</p>
+    </div>
+    <div 
+      class="stat-card"
+      [class.active]="filterType() === 'SAIDA'"
+      (click)="setFilterType('SAIDA')"
+      style="cursor:pointer"
+    >
+      <div class="stat-icon danger">📉</div>
+      <h3 class="stat-value">{{ exitTransactions().length }}</h3>
+      <p class="stat-label">Saídas</p>
     </div>
   </div>
 
-  <!-- Stats Cards -->
-  <div class="stats-grid" *ngIf="filteredTransactions().length > 0">
-    <ng-container *ngIf="filterType() === 'all'">
-      <div class="stat-card">
-        <div class="stat-icon primary">📊</div>
-        <h3 class="stat-value">{{ totalTransactions() }}</h3>
-        <p class="stat-label">Total de Transações</p>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon success">📈</div>
-        <h3 class="stat-value">{{ entryTransactions().length }}</h3>
-        <p class="stat-label">Entradas</p>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon danger">📉</div>
-        <h3 class="stat-value">{{ exitTransactions().length }}</h3>
-        <p class="stat-label">Saídas</p>
-      </div>
-    </ng-container>
-
-    <ng-container *ngIf="filterType() === 'ENTRADA'">
-      <div class="stat-card">
-        <div class="stat-icon success">📈</div>
-        <h3 class="stat-value">{{ entryTransactions().length }}</h3>
-        <p class="stat-label">Entradas</p>
-      </div>
-    </ng-container>
-
-    <ng-container *ngIf="filterType() === 'SAIDA'">
-      <div class="stat-card">
-        <div class="stat-icon danger">📉</div>
-        <h3 class="stat-value">{{ exitTransactions().length }}</h3>
-        <p class="stat-label">Saídas</p>
-      </div>
-    </ng-container>
-  </div>
+  <!-- ...cards já substituídos acima... -->
 
   <!-- Transaction List -->
   <div *ngIf="filteredTransactions().length > 0; else noTransactions" class="transactions-list">
