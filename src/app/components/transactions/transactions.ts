@@ -12,6 +12,15 @@ import { TransactionService } from '../../services/transaction';
   styleUrls: ['./transactions.css']
 })
 export class TransactionsComponent implements OnInit {
+  // ...existing code...
+
+  getTotalEntradas(): number {
+    return this.transactions().filter(t => t.type === 'ENTRADA').length;
+  }
+
+  getTotalSaidas(): number {
+    return this.transactions().filter(t => t.type === 'SAIDA').length;
+  }
   filterType = signal<'all' | 'ENTRADA' | 'SAIDA'>('all'); // MAIÚSCULO
   searchTerm = signal('');
   transactions = signal<Transaction[]>([]);

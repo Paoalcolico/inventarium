@@ -1,3 +1,29 @@
+/* Destaque claro para card ativo de filtro */
+.stats-grid .stat-card.active .stat-icon.primary {
+  background-color: #e3f0ff !important;
+  color: var(--primary-700) !important;
+}
+.stats-grid .stat-card.active .stat-icon.success {
+  background-color: #e6f8ec !important;
+  color: var(--success-700) !important;
+}
+.stats-grid .stat-card.active .stat-icon.danger {
+  background-color: #ffeaea !important;
+  color: var(--error-700) !important;
+}
+/* Borda colorida para cada card ativo de filtro */
+.stats-grid .stat-card.active:nth-child(1) {
+  border-color: #339cff !important; /* azul para total */
+  box-shadow: 0 0 0 2px #e3f0ff !important;
+}
+.stats-grid .stat-card.active:nth-child(2) {
+  border-color: #3ecb7b !important; /* verde para entradas */
+  box-shadow: 0 0 0 2px #e6f8ec !important;
+}
+.stats-grid .stat-card.active:nth-child(3) {
+  border-color: #ff6b6b !important; /* vermelho para saídas */
+  box-shadow: 0 0 0 2px #ffeaea !important;
+}
 /* Transactions Component - Corporate Theme */
 
 .container {

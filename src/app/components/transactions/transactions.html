@@ -35,9 +35,10 @@
   </div>
 
   <!-- Cards de estatísticas como filtro -->
-  <div class="stats-grid" *ngIf="filteredTransactions().length > 0">
+  <div class="stats-grid" *ngIf="transactions().length > 0">
     <div 
       class="stat-card"
+      [class.active]="filterType() === 'all'"
       style="cursor:pointer"
       (click)="setFilterType('all')"
     >
@@ -48,26 +49,26 @@
     <div 
       class="stat-card"
       [class.active]="filterType() === 'ENTRADA'"
-      (click)="setFilterType('ENTRADA')"
       style="cursor:pointer"
+      (click)="setFilterType('ENTRADA')"
     >
       <div class="stat-icon success">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M12 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           <path d="M7 10L12 5L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </div>
-      <h3 class="stat-value">{{ entryTransactions().length }}</h3>
+  <h3 class="stat-value">{{ getTotalEntradas() }}</h3>
       <p class="stat-label">Entradas</p>
     </div>
     <div 
       class="stat-card"
       [class.active]="filterType() === 'SAIDA'"
-      (click)="setFilterType('SAIDA')"
       style="cursor:pointer"
+      (click)="setFilterType('SAIDA')"
     >
       <div class="stat-icon danger">📉</div>
-      <h3 class="stat-value">{{ exitTransactions().length }}</h3>
+  <h3 class="stat-value">{{ getTotalSaidas() }}</h3>
       <p class="stat-label">Saídas</p>
     </div>
   </div>
