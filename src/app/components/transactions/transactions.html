@@ -80,8 +80,8 @@
     <div *ngFor="let transaction of filteredTransactions()" class="transaction-card">
       <div class="transaction-header">
         <div class="transaction-product">
-          <h4 class="product-name">{{ transaction.description || 'Transação sem descrição' }}</h4>
-          <span class="product-id">ID: {{ transaction.id }}</span>
+                <h4 class="detail-label highlight-date">Data: {{ formatDate(transaction.date) }}</h4>
+                <span class="product-id" style="display:block; margin-top:0.25em;">ID: {{ transaction.id }}</span>
         </div>
         <div class="transaction-type">
           <span class="type-badge" [ngClass]="{
@@ -105,10 +105,6 @@
         <div class="detail-item">
           <span class="detail-label">Usuário:</span>
           <span class="detail-value">{{ transaction.usuarioId }}</span>
-        </div>
-        <div class="detail-item">
-          <span class="detail-label">Data:</span>
-          <span class="detail-value">{{ formatDate(transaction.date) }}</span>
         </div>
         <div class="detail-item">
           <span class="detail-label">Valor Total:</span>
