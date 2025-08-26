@@ -35,33 +35,49 @@
 
 <!-- Stats Cards -->
 <div class="stats-grid d-flex flex-row gap-3 flex-nowrap">
-  <div class="stat-card card text-center cursor-pointer"
+  <div class="stat-card card cursor-pointer"
        [ngClass]="{'border-primary': selectedFilter() === 'all', 'shadow': selectedFilter() === 'all'}"
        (click)="filterBy('all')">
-    <div class="stat-icon primary">📦</div>
-    <h3 class="stat-value">{{ allProductsCount }}</h3>
-    <p class="stat-label">Total de Produtos</p>
+    <div style="display:flex;align-items:center;justify-content:flex-start;width:100%;gap:1rem;">
+      <div class="stat-icon primary">📦</div>
+      <div>
+        <h3 class="stat-value">{{ allProductsCount }}</h3>
+        <p class="stat-label">Total de Produtos</p>
+      </div>
+    </div>
   </div>
-  <div class="stat-card card text-center cursor-pointer"
+  <div class="stat-card card cursor-pointer"
        [ngClass]="{'border-success': selectedFilter() === 'inStock', 'shadow': selectedFilter() === 'inStock'}"
        (click)="filterBy('inStock')">
-    <div class="stat-icon success">✅</div>
-    <h3 class="stat-value">{{ inStockCount }}</h3>
-    <p class="stat-label">Em Estoque</p>
+    <div style="display:flex;align-items:center;justify-content:flex-start;width:100%;gap:1rem;">
+      <div class="stat-icon success">✅</div>
+      <div>
+        <h3 class="stat-value">{{ inStockCount }}</h3>
+        <p class="stat-label">Em Estoque</p>
+      </div>
+    </div>
   </div>
-  <div class="stat-card card text-center cursor-pointer"
+  <div class="stat-card card cursor-pointer"
        [ngClass]="{'border-warning': selectedFilter() === 'lowStock', 'shadow': selectedFilter() === 'lowStock'}"
        (click)="filterBy('lowStock')">
-    <div class="stat-icon warning">⚠️</div>
-    <h3 class="stat-value">{{ lowStockCount }}</h3>
-    <p class="stat-label">Estoque Baixo</p>
+    <div style="display:flex;align-items:center;justify-content:flex-start;width:100%;gap:1rem;">
+      <div class="stat-icon warning">⚠️</div>
+      <div>
+        <h3 class="stat-value">{{ lowStockCount }}</h3>
+        <p class="stat-label">Estoque Baixo</p>
+      </div>
+    </div>
   </div>
-  <div class="stat-card card text-center cursor-pointer"
+  <div class="stat-card card cursor-pointer"
        [ngClass]="{'border-danger': selectedFilter() === 'outOfStock', 'shadow': selectedFilter() === 'outOfStock'}"
        (click)="filterBy('outOfStock')">
-    <div class="stat-icon error">❌</div>
-    <h3 class="stat-value">{{ outOfStockCount }}</h3>
-    <p class="stat-label">Sem Estoque</p>
+    <div style="display:flex;align-items:center;justify-content:flex-start;width:100%;gap:1rem;">
+      <div class="stat-icon error">❌</div>
+      <div>
+        <h3 class="stat-value">{{ outOfStockCount }}</h3>
+        <p class="stat-label">Sem Estoque</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -71,12 +87,13 @@
     <h3 class="table-title m-0">Lista de Produtos</h3>
     <div class="d-flex align-items-center gap-2">
       <select class="form-select w-auto" [(ngModel)]="itemsPerPage" (change)="setPage(1)">
-        <option [ngValue]="10">10 por página</option>
-        <option [ngValue]="20">20 por página</option>
-        <option [ngValue]="50">50 por página</option>
-        <option [ngValue]="100">100 por página</option>
-      </select>
-      <button class="btn btn-ordenar btn-action d-flex align-items-center" style="gap:0.5rem;" (click)="toggleOrderMenu = !toggleOrderMenu" title="Ordenar">
+          <option [ngValue]="10">10 por página</option>
+          <option [ngValue]="20">20 por página</option>
+          <option [ngValue]="50">50 por página</option>
+          <option [ngValue]="100">100 por página</option>
+        </select>
+        <span style="width:1.5rem;display:inline-block;"></span>
+        <button class="btn btn-ordenar btn-action d-flex align-items-center" style="gap:0.5rem;" (click)="toggleOrderMenu = !toggleOrderMenu" title="Ordenar">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M3 6h18M7 12h14M10 18h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
       <div class="position-relative" *ngIf="toggleOrderMenu">
