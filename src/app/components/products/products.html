@@ -38,9 +38,9 @@
   <div class="stat-card card cursor-pointer"
        [ngClass]="{'border-primary': selectedFilter() === 'all', 'shadow': selectedFilter() === 'all'}"
        (click)="filterBy('all')">
-    <div style="display:flex;align-items:center;justify-content:flex-start;width:100%;gap:1rem;">
-      <div class="stat-icon primary">📦</div>
-      <div>
+    <div style="display:flex;align-items:center;justify-content:flex-start;width:100%;gap:1rem;position:relative;">
+      <div class="stat-icon primary" style="position:absolute;left:0;top:50%;transform:translateY(-50%);">📦</div>
+      <div style="margin:0 auto;display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <h3 class="stat-value">{{ allProductsCount }}</h3>
         <p class="stat-label">Total de Produtos</p>
       </div>
@@ -49,9 +49,9 @@
   <div class="stat-card card cursor-pointer"
        [ngClass]="{'border-success': selectedFilter() === 'inStock', 'shadow': selectedFilter() === 'inStock'}"
        (click)="filterBy('inStock')">
-    <div style="display:flex;align-items:center;justify-content:flex-start;width:100%;gap:1rem;">
-      <div class="stat-icon success">✅</div>
-      <div>
+    <div style="display:flex;align-items:center;justify-content:flex-start;width:100%;gap:1rem;position:relative;">
+      <div class="stat-icon success" style="position:absolute;left:0;top:50%;transform:translateY(-50%);">✅</div>
+      <div style="margin:0 auto;display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <h3 class="stat-value">{{ inStockCount }}</h3>
         <p class="stat-label">Em Estoque</p>
       </div>
@@ -60,9 +60,9 @@
   <div class="stat-card card cursor-pointer"
        [ngClass]="{'border-warning': selectedFilter() === 'lowStock', 'shadow': selectedFilter() === 'lowStock'}"
        (click)="filterBy('lowStock')">
-    <div style="display:flex;align-items:center;justify-content:flex-start;width:100%;gap:1rem;">
-      <div class="stat-icon warning">⚠️</div>
-      <div>
+    <div style="display:flex;align-items:center;justify-content:flex-start;width:100%;gap:1rem;position:relative;">
+      <div class="stat-icon warning" style="position:absolute;left:0;top:50%;transform:translateY(-50%);">⚠️</div>
+      <div style="margin:0 auto;display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <h3 class="stat-value">{{ lowStockCount }}</h3>
         <p class="stat-label">Estoque Baixo</p>
       </div>
@@ -71,9 +71,9 @@
   <div class="stat-card card cursor-pointer"
        [ngClass]="{'border-danger': selectedFilter() === 'outOfStock', 'shadow': selectedFilter() === 'outOfStock'}"
        (click)="filterBy('outOfStock')">
-    <div style="display:flex;align-items:center;justify-content:flex-start;width:100%;gap:1rem;">
-      <div class="stat-icon error">❌</div>
-      <div>
+    <div style="display:flex;align-items:center;justify-content:flex-start;width:100%;gap:1rem;position:relative;">
+      <div class="stat-icon error" style="position:absolute;left:0;top:50%;transform:translateY(-50%);">❌</div>
+      <div style="margin:0 auto;display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <h3 class="stat-value">{{ outOfStockCount }}</h3>
         <p class="stat-label">Sem Estoque</p>
       </div>
