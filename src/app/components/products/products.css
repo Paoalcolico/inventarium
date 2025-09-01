@@ -1,3 +1,33 @@
+/* Fixar largura da tabela de produtos e das colunas */
+.data-table .table {
+  table-layout: fixed !important;
+  width: 100% !important;
+  min-width: 900px !important;
+  max-width: 100%;
+}
+.data-table .table th, .data-table .table td {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+.data-table .table th:nth-child(1), .data-table .table td:nth-child(1) {
+  width: 25% !important;
+}
+.data-table .table th:nth-child(2), .data-table .table td:nth-child(2) {
+  width: 15% !important;
+}
+.data-table .table th:nth-child(3), .data-table .table td:nth-child(3) {
+  width: 10% !important;
+}
+.data-table .table th:nth-child(4), .data-table .table td:nth-child(4) {
+  width: 15% !important;
+}
+.data-table .table th:nth-child(5), .data-table .table td:nth-child(5) {
+  width: 10% !important;
+}
+.data-table .table th:nth-child(6), .data-table .table td:nth-child(6) {
+  width: 25% !important;
+}
 /* Products Component Styles */
 
 /* FORÇA LAYOUT HORIZONTAL DOS CARDS */
